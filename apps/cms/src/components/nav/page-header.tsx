@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export const PageHeader = () => {
   const pathname = usePathname();
 
-  let heading = "Home";
+  let heading = "Workspace Overview";
   if (pathname) {
     const parts = pathname.split("/").filter(Boolean);
     if (parts.length > 1 && parts[1]) {
@@ -22,9 +22,6 @@ export const PageHeader = () => {
         <SidebarTrigger className="-ml-1 size-4" />
         <Separator orientation="vertical" className="mr-2 h-4" />
       </div>
-      {/* <div>
-          <AppBreadcrumb />
-        </div> */}
       <h1 className="text-lg font-medium capitalize">{heading}</h1>
       {/* <div className="ml-auto flex items-center">
           <Announcements />

@@ -110,3 +110,7 @@
     display: none;
   }
 }
+
+.react-activity-calendar__scroll-container {
+  padding: 2px !important; 
+}
