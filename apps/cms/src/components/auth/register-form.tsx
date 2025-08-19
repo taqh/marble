@@ -64,7 +64,7 @@ export function RegisterForm() {
           image: `https://api.dicebear.com/9.x/glass/svg?seed=${formData.email.toLowerCase().split("@")[0]}`,
         },
         {
-          onSuccess: () => {
+          onSuccess: async () => {
             setLastUsedAuthMethod("email");
             initiateEmailVerification(formData.email);
           },
@@ -74,6 +74,7 @@ export function RegisterForm() {
         },
       );
     } catch (_error) {
+      console.log(_error)
       toast.error("Sign in failed. Please try again.");
     } finally {
       setIsCredentialsLoading(false);
