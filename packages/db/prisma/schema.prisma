@@ -46,6 +46,7 @@ model Organization {
   invitations  Invitation[]
   media        Media[]
   members      Member[]
+  guests       
   posts        Post[]
   tags         Tag[]
   webhooks     Webhook[]
@@ -216,6 +217,37 @@ model Member {
   user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("member")
+}
+
+enum SocialLink {
+  twitter
+  facebook
+  instagram
+  linkedin
+  youtube
+  github
+  tiktok
+  other
+}
+
+model Socials {
+  id             String       @id @default(cuid())
+  type           SocialLink
+  url            String
+
+  @@map("social_link")
+}
+
+model Guest {
+  id             String       @id @default(cuid())
+  slug           String
+  role           String
+  createdAt      DateTime
+  image          String?
+  position       String?
+  description    String?
+  socials        Socials[]
+  @@map("guest")
 }
 
 model Invitation {
