@@ -1,9 +1,7 @@
 import type { Extension } from "@tiptap/core";
 import TextAlign from "@tiptap/extension-text-align";
 import { cx } from "class-variance-authority";
-import { common, createLowlight } from "lowlight";
 import {
-  CodeBlockLowlight,
   HorizontalRule,
   Placeholder,
   StarterKit,
@@ -15,6 +13,7 @@ import {
   Youtube,
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
+import { CustomCodeBlock } from "./code-block-extension";
 
 // You can overwrite the placeholder with your own configuration
 const placeholder = Placeholder;
@@ -77,9 +76,7 @@ const textAlign = TextAlign.configure({
   types: ["heading", "paragraph"],
 });
 
-const CodeBlockLowlightEx = CodeBlockLowlight.configure({
-  lowlight: createLowlight(common),
-});
+// Custom code block with language selector is imported
 
 const starterKit = StarterKit.configure({
   bulletList: {
@@ -115,7 +112,7 @@ export const defaultExtensions: Extension[] = [
   starterKit,
   placeholder,
   textAlign,
-  CodeBlockLowlightEx as unknown as Extension,
+  CustomCodeBlock as unknown as Extension,
   // UpdatedImage as unknown as Extension,
   youtube as unknown as Extension,
   tiptapLink as unknown as Extension,
